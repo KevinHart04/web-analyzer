@@ -1,0 +1,31 @@
+# ==========================================
+# El Patovica de Python - .gitignore
+# ==========================================
+
+# 1. Caché y archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 2. Entornos Virtuales (¡Prohibido pasar!)
+venv/
+env/
+.venv/
+
+# 3. Secretos y Variables de Entorno
+.env
+.env.local
+*.pem
+
+# 4. Herramientas de testing y logs
+.pytest_cache/
+.coverage
+*.log
+
+# 5. Basura de Editores y Sistemas Operativos
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
