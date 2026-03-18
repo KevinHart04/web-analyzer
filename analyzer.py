@@ -1,12 +1,13 @@
-import requests
 import argparse
+import requests
 from rich.console import Console
 from core.requester import check_target_alive
 from modules.headers import analyze_headers
 from modules.robots import get_robots_txt
 from rich.panel import Panel
+import modules.fingerprint as fingerprint
 
-console = Console()
+console = Console()\
 
 def setup_cli():
     """
@@ -47,8 +48,14 @@ def analyze_target(url: str):
             robots_info = get_robots_txt(url)
         console.print(Panel(robots_info, title="[bold magenta]Contenido de robots.txt [/bold magenta]", border_style="magenta"))
         
+        with console.status(f"[bold blue]Detectando tecnologías en {url}...", spinner="earth"):
+            tecnologias = fingerprint.detect_technologies(url)
+        console.print(Panel("\n".join(tecnologias), title="[bold blue]Tecnologías detectadas [/bold blue]", border_style="blue"))
+
+        
     else:
         console.print("[bold red][!] El objetivo no responde o la URL es inválida.[/bold red]")
+
 
 
 
